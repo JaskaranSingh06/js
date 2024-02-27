@@ -1,37 +1,47 @@
-let fruits = ["apple", "banana", "orange", "grape", "kiwi"];
+class FruitBasket{
+    constructor(){
+        this.fruits = ["apple", "banana", "orange", "grape", "kiwi"];
+    }
 
-function displayFruits(fruits){
-    for(let i=0; i<fruits.length; i++){
-        console.log(fruits[i]);
+    displayFruits(){
+        for(let i=0; i<this.fruits.length; i++){
+            console.log(this.fruits[i]);
+        }
+    }
+
+    addFruit(newFruit){
+        this.fruits.push(newFruit);
+        console.log(`${newFruit} added to the basket`);
+    }
+
+    removeFruit(fruitToRemove){
+        const index = this.fruits.indexOf(fruitToRemove);
+        if (index !== -1) {
+            this.fruits.splice(index, 1);
+            console.log(`${fruitToRemove} removed from the basket.`);
+        }else{
+            console.log(`${fruitToRemove} is not in the basket.`);
+        }
     }
 }
 
-function addFruit(fruits, newFruit){
-    fruits[fruits.length] = newFruit;
-}
-
-function removeFruit(fruits, removeFruit){
-    let index = fruits.indexOf(removeFruit);
-    if (index !== -1) {
-        fruits.splice(index, 1);
-    }
-}
-
+const basket = new FruitBasket();
 // Call the displayFruits function to display the initial array of fruits
 console.log("Initial array of fruits:");
-displayFruits(fruits);
+basket.displayFruits();
 
 // Add a new fruit to the array
 var newFruit = "mango";
-addFruit(fruits, newFruit);
+basket.addFruit(newFruit);
 
 // Call the displayFruits function again to display the updated array of fruits
 console.log("Updated array of fruits after adding a new fruit:");
-displayFruits(fruits);
+basket.displayFruits();
 
 // Remove a fruit from the array
-removeFruit(fruits, "banana");
+console.log("\nRemoving 'banana' from the basket:");
+basket.removeFruit("banana");
 
 // Call the displayFruits function again to display the updated array of fruits
 console.log("Updated array of fruits after removing a fruit:");
-displayFruits(fruits);
+basket.displayFruits();
